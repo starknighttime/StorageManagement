@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gamingbeast="http://schemas.android.com/apk/res/com.gamingbeast.storagemanagement"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/tabbg"
+    android:orientation="horizontal" >
+
+    <com.gamingbeast.storagemanagement.CustomTextView
+        android:id="@+id/bt_brief"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:padding="5dp"
+        gamingbeast:icon="@drawable/ic_menu_brief"
+        gamingbeast:text="@string/tab_brief"
+        gamingbeast:text_size="12sp" 
+        android:onClick="onClick"/>
+
+    <com.gamingbeast.storagemanagement.CustomTextView
+        android:id="@+id/bt_action"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:padding="5dp"
+        gamingbeast:icon="@drawable/ic_menu_action"
+        gamingbeast:text="@string/tab_action"
+        gamingbeast:text_size="12sp" 
+        android:onClick="onClick"/>
+
+    <com.gamingbeast.storagemanagement.CustomTextView
+        android:id="@+id/bt_storage"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:padding="5dp"
+        gamingbeast:icon="@drawable/ic_menu_storage"
+        gamingbeast:text="@string/tab_storage"
+        gamingbeast:text_size="12sp" 
+        android:onClick="onClick"/>
+
+    <com.gamingbeast.storagemanagement.CustomTextView
+        android:id="@+id/bt_other"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:padding="5dp"
+        gamingbeast:icon="@drawable/ic_menu_other"
+        gamingbeast:text="@string/tab_other"
+        gamingbeast:text_size="12sp" 
+        android:onClick="onClick"/>
+
+</LinearLayout>
