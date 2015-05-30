@@ -11,7 +11,7 @@
         android:layout_weight="1" 
         android:adjustViewBounds="true"
         android:src="@drawable/bt_import_normal"
-        android:onClick="onClick"/>
+        android:onClick="onTabSwitched"/>
 
     <ImageView
         android:id="@+id/bt_export"
@@ -20,7 +20,7 @@
         android:layout_weight="1" 
         android:adjustViewBounds="true"
         android:src="@drawable/bt_export_normal"
-        android:onClick="onClick"/>
+        android:onClick="onTabSwitched"/>
 
     <ImageView
         android:id="@+id/bt_receive"
@@ -29,7 +29,7 @@
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:src="@drawable/bt_receive_normal"
-        android:onClick="onClick" />
+        android:onClick="onTabSwitched" />
 
     <ImageView
         android:id="@+id/bt_post"
@@ -38,6 +38,6 @@
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:src="@drawable/bt_post_normal"
-        android:onClick="onClick" />
+        android:onClick="onTabSwitched" />
 
 </LinearLayout>

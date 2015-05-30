@@ -5,7 +5,7 @@
     android:orientation="horizontal" >
 
     <com.gamingbeast.storagemanagement.CustomTextView
-        android:id="@+id/bt_brief"
+        android:id="@+id/tab_brief"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_weight="1"
@@ -13,10 +13,10 @@
         gamingbeast:icon="@drawable/ic_menu_brief"
         gamingbeast:text="@string/tab_brief"
         gamingbeast:text_size="12sp" 
-        android:onClick="onClick"/>
+        android:onClick="onTabSwitched"/>
 
     <com.gamingbeast.storagemanagement.CustomTextView
-        android:id="@+id/bt_action"
+        android:id="@+id/tab_action"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_weight="1"
@@ -24,10 +24,10 @@
         gamingbeast:icon="@drawable/ic_menu_action"
         gamingbeast:text="@string/tab_action"
         gamingbeast:text_size="12sp" 
-        android:onClick="onClick"/>
+        android:onClick="onTabSwitched"/>
 
     <com.gamingbeast.storagemanagement.CustomTextView
-        android:id="@+id/bt_storage"
+        android:id="@+id/tab_storage"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_weight="1"
@@ -35,10 +35,10 @@
         gamingbeast:icon="@drawable/ic_menu_storage"
         gamingbeast:text="@string/tab_storage"
         gamingbeast:text_size="12sp" 
-        android:onClick="onClick"/>
+        android:onClick="onTabSwitched"/>
 
     <com.gamingbeast.storagemanagement.CustomTextView
-        android:id="@+id/bt_other"
+        android:id="@+id/tab_other"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_weight="1"
@@ -46,6 +46,6 @@
         gamingbeast:icon="@drawable/ic_menu_other"
         gamingbeast:text="@string/tab_other"
         gamingbeast:text_size="12sp" 
-        android:onClick="onClick"/>
+        android:onClick="onTabSwitched"/>
 
 </LinearLayout>

@@ -2,8 +2,17 @@
 <resources>
 
     <string name="app_name">StorageManagement</string>
+    <string name="bar_search">搜索</string>
+    <string name="bt_notification">提醒</string>
     <string name="tab_brief">记录</string>
     <string name="tab_action">交易</string>
     <string name="tab_storage">仓库</string>
     <string name="tab_other">扩展</string>
+    <string name="tab_import">进货</string>
+    <string name="tab_export">销售</string>
+    <string name="tab_receive">收货</string>
+    <string name="tab_post">发货</string>
+    <string name="filtertitle_brand">品牌 BRAND</string>
+    <string name="filtertitle_type">类型 TYPE</string>
+
 </resources>
