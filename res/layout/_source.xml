@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/normal_view_height" >
+
+    <TextView
+        android:id="@+id/tv_source_name"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:text="电话： "
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/et_source_tel"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:focusableInTouchMode="false"
+        android:gravity="center"
+        android:hint="留个电话"
+        android:imeOptions="actionDone"
+        android:inputType="number" />
+
+</LinearLayout>

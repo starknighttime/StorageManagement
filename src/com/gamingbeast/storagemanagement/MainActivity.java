@@ -11,8 +11,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -25,8 +23,7 @@ public class MainActivity extends FragmentActivity implements
 	private List<Fragment> mTransContents = new ArrayList<Fragment>();
 	private List<Fragment> mContents = new ArrayList<Fragment>();
 	private List<CustomTextView> mTabIndicator = new ArrayList<CustomTextView>();
-	private Fragment mSelector;
-	
+
 	private boolean mFragmentUpdateFlag = false;
 	private int mSelectedActionTab = Constants.ACTION_TAB_MAIN;
 	private int mSelectedTab = R.id.tab_brief;
@@ -35,18 +32,19 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		CrashHandler crashHandler = CrashHandler.getInstance();
+		crashHandler.init(getApplicationContext());
+		getActionBar().hide();
 		setContentView(R.layout.activity_main);
-		//TODO
+		// TODO
 		//DBHelper.copyDataBase(1,this);
 		DBHelper.intiDatabase(this);
 		mViewContent = (ViewPager) findViewById(R.id.vp_container);
 		init();
 		mViewContent.setAdapter(mContentAdapter);
 		mViewContent.setOnPageChangeListener(this);
-		// mDB.execSQL("");
 	}
 
-	
 	@Override
 	public void onBackPressed() {
 		onTabSwitched(findViewById(R.id.tab_action));
@@ -55,6 +53,7 @@ public class MainActivity extends FragmentActivity implements
 
 	@Override
 	protected void onResume() {
+		DBHelper.intiDatabase(this);
 		super.onResume();
 
 	}
@@ -67,35 +66,11 @@ public class MainActivity extends FragmentActivity implements
 
 	@Override
 	protected void onPause() {
+		DBHelper.getDatabase().close();
 		super.onPause();
 	}
 
 	// actionbar
-
-	@Override
-	public boolean onCreateOptionsMenu(final Menu menu) {
-		if ((mSelectedTab == R.id.tab_action && mSelectedActionTab == Constants.ACTION_TAB_MAIN)
-				|| mSelectedTab == R.id.tab_other) {
-			getMenuInflater().inflate(R.menu.without_search, menu);
-		} else {
-			getMenuInflater().inflate(R.menu.with_search, menu);
-		}
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(final MenuItem item) {
-		// TODO
-		if (item.getTitle().toString()
-				.equals(getResources().getString(R.string.bt_notification))) {
-			mTabIndicator.get(2).setIconAlpha(1.0f);
-			mSelectedTab = R.id.tab_storage;
-			mViewContent.setCurrentItem(2, false);
-			getActionBar().setTitle(
-					getResources().getString(R.string.tab_storage));
-		}
-		return super.onOptionsItemSelected(item);
-	}
 
 	// initialize
 	private void init() {
@@ -105,14 +80,13 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	private void initContentFragments() {
-		mSelector= new SelectorFragment();
 		mContents.add(new BriefFragment());
 		mContents.add(new ActionFragment());
-		mContents.add(mSelector);
+		mContents.add(new StorageFragment());
 		mContents.add(new OtherFragment());
 		mTransContents.add(mContents.get(1));
-		mTransContents.add(mSelector);
-		mTransContents.add(mSelector);
+		mTransContents.add(new ImportFragment());
+		mTransContents.add(new ExportFragment());
 		mTransContents.add(new ReceiveFragment());
 		mTransContents.add(new PostFragment());
 	}
@@ -173,7 +147,6 @@ public class MainActivity extends FragmentActivity implements
 			mViewContent.setCurrentItem(3, false);
 			break;
 		case R.id.bt_import:
-			mTabIndicator.get(1).setIconAlpha(1.0f);
 			mSelectedTab = R.id.tab_action;
 			mSelectedActionTab = Constants.ACTION_TAB_IMPORT;
 			mContents.set(1, mTransContents.get(1));
@@ -181,7 +154,6 @@ public class MainActivity extends FragmentActivity implements
 			mViewContent.getAdapter().notifyDataSetChanged();
 			break;
 		case R.id.bt_export:
-			mTabIndicator.get(1).setIconAlpha(1.0f);
 			mSelectedTab = R.id.tab_action;
 			mSelectedActionTab = Constants.ACTION_TAB_EXPORT;
 			mContents.set(1, mTransContents.get(2));
@@ -189,7 +161,6 @@ public class MainActivity extends FragmentActivity implements
 			mViewContent.getAdapter().notifyDataSetChanged();
 			break;
 		case R.id.bt_receive:
-			mTabIndicator.get(1).setIconAlpha(1.0f);
 			mSelectedTab = R.id.tab_action;
 			mSelectedActionTab = Constants.ACTION_TAB_RECEIVE;
 			mContents.set(1, mTransContents.get(3));
@@ -197,7 +168,6 @@ public class MainActivity extends FragmentActivity implements
 			mViewContent.getAdapter().notifyDataSetChanged();
 			break;
 		case R.id.bt_post:
-			mTabIndicator.get(1).setIconAlpha(1.0f);
 			mSelectedTab = R.id.tab_action;
 			mSelectedActionTab = Constants.ACTION_TAB_POST;
 			mContents.set(1, mTransContents.get(4));

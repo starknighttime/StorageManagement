@@ -3,9 +3,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Brief" />
+    <ListView
+        android:id="@+id/lv_messages"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="5dp"
+        android:background="@drawable/bg_brief"
+        android:divider="#99D9EA"
+        android:dividerHeight="1px" />
 
 </LinearLayout>

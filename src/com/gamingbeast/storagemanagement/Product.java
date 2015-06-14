@@ -1,15 +1,13 @@
 package com.gamingbeast.storagemanagement;
 
-import android.graphics.Bitmap;
-import android.view.View;
-
-public class Product implements Comparable<Product> {
+public class Product {
 	boolean isLocked = false;
 	boolean showDetail = false;
-	View detail;
+	boolean isSelected = false;
+	int amount = 0;
+	
 	int PKEY;
 	String name;
-	Bitmap photo;
 	float retailPrice;
 	float wholesalePrice[];
 	int wholesaleCount[];
@@ -17,13 +15,17 @@ public class Product implements Comparable<Product> {
 	float avImPrice;
 	float avImPriceInStock;
 	float avShipmentCostInStock;
+	String lowestImTime;
+	String lowestImSource;
 	int quantity;
 	int salesVolume;
+	int quantityIm;
+	int quantityEx;
+	int quantityC;
 
 	public Product(Builder build) {
 		this.PKEY = build.PKEY;
 		this.name = build.name;
-		this.photo = build.photo;
 		this.retailPrice = build.retailPrice;
 		this.wholesalePrice = build.wholesalePrice;
 		this.wholesaleCount = build.wholesaleCount;
@@ -33,14 +35,27 @@ public class Product implements Comparable<Product> {
 		this.avShipmentCostInStock = build.avShipmentCostInStock;
 		this.quantity = build.quantity;
 		this.salesVolume = build.salesVolume;
+		this.quantityIm = build.quantityIm;
+		this.quantityEx = build.quantityEx;
+		this.quantityC = build.quantityC;
+		this.lowestImTime = build.lowestImTime;
+		this.lowestImSource = build.lowestImSource;
+	}
+
+	public Product(int PKEY) {
+		this.PKEY = PKEY;
 	}
 
 	@Override
-	public int compareTo(Product another) {
-		if (PKEY == another.PKEY) {
-			return 0;
+	public boolean equals(Object another) {
+		if (another instanceof Product) {
+			if (PKEY == ((Product) another).PKEY) {
+				return true;
+			} else {
+				return false;
+			}
 		}
-		return 1;
+		return super.equals(another);
 	}
 
 	public String toString() {
@@ -50,7 +65,6 @@ public class Product implements Comparable<Product> {
 	public static class Builder {
 		private int PKEY;
 		private String name;
-		private Bitmap photo;
 		private float retailPrice;
 		private float wholesalePrice[];
 		private int wholesaleCount[];
@@ -60,15 +74,15 @@ public class Product implements Comparable<Product> {
 		private float avShipmentCostInStock;
 		private int quantity;
 		private int salesVolume;
+		private int quantityIm;
+		private int quantityEx;
+		private int quantityC;
+		private String lowestImTime;
+		private String lowestImSource;
 
 		public Builder(int PKEY, String name) {
 			this.PKEY = PKEY;
 			this.name = name;
-		}
-
-		public Builder photo(Bitmap photo) {
-			this.photo = photo;
-			return this;
 		}
 
 		public Builder retailPrice(float retailPrice) {
@@ -82,7 +96,7 @@ public class Product implements Comparable<Product> {
 		}
 
 		public Builder wholesaleCount(int[] wholesaleCount) {
-			this.wholesaleCount =wholesaleCount;
+			this.wholesaleCount = wholesaleCount;
 			return this;
 		}
 
@@ -113,6 +127,27 @@ public class Product implements Comparable<Product> {
 
 		public Builder salesVolume(int salesVolume) {
 			this.salesVolume = salesVolume;
+			return this;
+		}
+		
+		public Builder quantityIm(int quantityIm) {
+			this.quantityIm = quantityIm;
+			return this;
+		}
+		public Builder quantityEx(int quantityEx) {
+			this.quantityEx = quantityEx;
+			return this;
+		}
+		public Builder quantityC(int quantityC) {
+			this.quantityC = quantityC;
+			return this;
+		}
+		public Builder lowestImTime(String lowestImTime) {
+			this.lowestImTime = lowestImTime;
+			return this;
+		}
+		public Builder lowestImSource(String lowestImSource) {
+			this.lowestImSource = lowestImSource;
 			return this;
 		}
 

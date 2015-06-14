@@ -1,10 +1,165 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" 
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Export" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/normal_view_height"
+        android:orientation="horizontal" >
+
+        <CheckedTextView
+            android:id="@+id/cb_selectall_types"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:drawableStart="?android:attr/listChoiceIndicatorMultiple"
+            android:gravity="center_vertical"
+            android:text="@string/filtertitle_type" />
+
+        <ImageButton
+            android:id="@+id/bt_showall_type"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:src="@drawable/bt_options_show" />
+
+        <CheckedTextView
+            android:id="@+id/cb_selectall_brands"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:drawableStart="?android:attr/listChoiceIndicatorMultiple"
+            android:enabled="false"
+            android:gravity="center_vertical"
+            android:text="@string/filtertitle_brand" />
+
+        <ImageButton
+            android:id="@+id/bt_showall_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:src="@drawable/bt_options_disabled" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@drawable/bg_divider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/bt_cart_state"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/normal_view_height"
+            android:layout_alignParentBottom="true"
+            android:drawableStart="@drawable/bt_cart_state"
+            android:gravity="center"
+            android:paddingEnd="100dp"
+            android:paddingStart="100dp"
+            android:text="出货单" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_above="@id/bt_cart_state"
+            android:background="@drawable/bg_divider" />
+
+        <ListView
+            android:id="@+id/lv_products"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/bt_cart_state"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
+            android:divider="#99D9EA"
+            android:dividerHeight="1px" />
+
+        <GridView
+            android:id="@+id/gv_options_type"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_options"
+            android:fadeScrollbars="true"
+            android:gravity="center"
+            android:numColumns="4"
+            android:scrollbarFadeDuration="2000"
+            android:stretchMode="columnWidth"
+            android:visibility="gone" />
+
+        <GridView
+            android:id="@+id/gv_options_brand"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_options"
+            android:fadeScrollbars="true"
+            android:gravity="center"
+            android:numColumns="3"
+            android:scrollbarFadeDuration="2000"
+            android:stretchMode="columnWidth"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/ly_order_actions"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/normal_view_height"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone" >
+
+            <Spinner
+                android:id="@+id/sp_select_customer"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@drawable/bg_divider" />
+
+            <TextView
+                android:id="@+id/bt_cart_clean"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/bt_cart_clean"
+                android:gravity="center"
+                android:text="清空" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_divider" />
+
+            <TextView
+                android:id="@+id/bt_order_confirm"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/bt_order_confirm"
+                android:gravity="center"
+                android:text="出货" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@id/ly_order_actions"
+            android:background="@drawable/bg_divider" />
+
+        <ListView
+            android:id="@+id/lv_order"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/bt_cart_state"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
+            android:background="#EEEEEE"
+            android:divider="#99D9EA"
+            android:dividerHeight="1px"
+            android:visibility="gone" />
+    </RelativeLayout>
+
 </LinearLayout>

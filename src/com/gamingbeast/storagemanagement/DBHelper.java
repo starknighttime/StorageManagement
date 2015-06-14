@@ -86,5 +86,8 @@ public class DBHelper {
 	public static SQLiteDatabase getDatabase() {	
 		return mDB;
 	}
+	public static void close(){
+		mDB.close();
+	}
 
 }

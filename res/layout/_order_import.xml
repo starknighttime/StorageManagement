@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/normal_view_height" >
+
+    <TextView
+        android:id="@+id/tv_im_order"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:singleLine="true" />
+
+    <ToggleButton
+        android:id="@+id/st_im_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textOff="未付款" />
+
+    <TextView
+        android:id="@+id/tv_im_paytime"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|end"
+        android:visibility="gone" />
+    <TextView
+        android:id="@+id/tv_im_state"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|end" />
+
+</LinearLayout>

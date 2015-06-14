@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:gamingbeast="http://schemas.android.com/apk/res/com.gamingbeast.storagemanagement"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/tabbg"
+    android:background="@drawable/bg_tab"
     android:orientation="horizontal" >
 
     <com.gamingbeast.storagemanagement.CustomTextView

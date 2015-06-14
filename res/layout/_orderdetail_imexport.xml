@@ -1,0 +1,90 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:dividerHeight="0dp"
+    android:fadeScrollbars="true"
+    android:stretchColumns="1" >
+
+    <TableRow>
+
+        <ImageView
+            android:id="@+id/iv_prod_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/photo_prod_default" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_prod_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:singleLine="true" />
+
+            <LinearLayout
+                android:id="@+id/ly_action_area"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center" >
+
+                <ImageButton
+                    android:id="@+id/bt_action_minus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/bt_action_minus" />
+
+                <EditText
+                    android:id="@+id/et_quantity_action"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:focusableInTouchMode="false"
+                    android:gravity="end"
+                    android:hint="@string/default_amount"
+                    android:imeOptions="actionDone"
+                    android:inputType="number" />
+
+                <TextView
+                    android:id="@+id/tv_quantity_sum"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:singleLine="true" />
+
+                <ImageButton
+                    android:id="@+id/bt_action_plus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/bt_action_plus" />
+
+                <ImageButton
+                    android:id="@+id/bt_cart_remove"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/bt_cart_remove" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_action_date"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:singleLine="true"
+                android:visibility="gone" />
+        </LinearLayout>
+    </TableRow>
+
+</TableLayout>
