@@ -78,13 +78,13 @@ public class StorageFragment extends Fragment {
 		mSelectAllTypes.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				boolean _isChecked = !((CheckedTextView) v).isChecked();
 				((CheckedTextView) v).toggle();
+				boolean _isChecked = ((CheckedTextView) v).isChecked();
 				int _t = mTypes.size();
 				for (int _i = 0; _i < _t; _i++) {
 					Type _temp = mTypes.get(_i);
 					_temp.checked = _isChecked;
-					if (_temp.vh != null) {
+					if (mIsTypeShown && _temp.vh != null) {
 						_temp.vh.setChecked(_isChecked);
 						_temp.vh.setTextColor(_isChecked ? Color.BLUE
 								: Color.BLACK);
@@ -98,21 +98,14 @@ public class StorageFragment extends Fragment {
 		});
 		mShowTypes.setOnClickListener(new Button.OnClickListener() {
 			public void onClick(View v) {
-
 				if (mIsBrandShown) {
 					closeBrandOption();
 				}
-
 				if (!mIsTypeShown) {
-					mTypeOptions.setAdapter(new TypeAdapter(getActivity()
-							.getLayoutInflater()));
+					mTypeOptions.invalidateViews();
 				}
 				mTypeOptions.setVisibility(mIsTypeShown ? View.GONE
 						: View.VISIBLE);
-				if (mIsTypeShown) {
-					mTypeOptions.setAdapter(null);
-				}
-				mTypeOptions.invalidateViews();
 				mShowTypes
 						.setImageResource(mIsTypeShown ? R.drawable.bt_options_show
 								: R.drawable.bt_options_hide);
@@ -123,13 +116,13 @@ public class StorageFragment extends Fragment {
 		mSelectAllBrands.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				boolean _isChecked = !((CheckedTextView) v).isChecked();
 				((CheckedTextView) v).toggle();
+				boolean _isChecked = ((CheckedTextView) v).isChecked();
 				int _t = mBrands.size();
 				for (int _i = 0; _i < _t; _i++) {
 					Brand _temp = mBrands.get(_i);
 					_temp.checked = _isChecked;
-					if (_temp.vh != null) {
+					if (mIsBrandShown && _temp.vh != null) {
 						_temp.vh.setChecked(_isChecked);
 						_temp.vh.setTextColor(_isChecked ? Color.BLUE
 								: Color.BLACK);
@@ -145,15 +138,10 @@ public class StorageFragment extends Fragment {
 					closeTypeOption();
 				}
 				if (!mIsBrandShown) {
-					mBrandOptions.setAdapter(new BrandAdapter(getActivity()
-							.getLayoutInflater()));
+					mBrandOptions.invalidateViews();
 				}
 				mBrandOptions.setVisibility(mIsBrandShown ? View.GONE
 						: View.VISIBLE);
-				if (mIsBrandShown) {
-					mBrandOptions.setAdapter(null);
-				}
-				mBrandOptions.invalidateViews();
 				mShowBrands
 						.setImageResource(mIsBrandShown ? R.drawable.bt_options_show
 								: R.drawable.bt_options_hide);
@@ -372,14 +360,12 @@ public class StorageFragment extends Fragment {
 
 	private void closeBrandOption() {
 		mBrandOptions.setVisibility(View.GONE);
-		mBrandOptions.setAdapter(null);
 		mShowBrands.setImageResource(R.drawable.bt_options_show);
 		mIsBrandShown = false;
 	}
 
 	private void closeTypeOption() {
 		mTypeOptions.setVisibility(View.GONE);
-		mTypeOptions.setAdapter(null);
 		mShowTypes.setImageResource(R.drawable.bt_options_show);
 		mIsTypeShown = false;
 	}
@@ -409,38 +395,36 @@ public class StorageFragment extends Fragment {
 		@Override
 		public View getView(final int position, View convertView,
 				ViewGroup parent) {
-			if (convertView == null) {
-				CheckedTextView vh = null;
-				convertView = mInflater.inflate(R.layout._option_item, parent,
-						false);
-				vh = (CheckedTextView) convertView.findViewById(R.id.cb_option);
-				vh.setOnClickListener(new View.OnClickListener() {
+			convertView = mInflater.inflate(R.layout._option_item, parent,
+					false);
+			CheckedTextView vh = (CheckedTextView) convertView
+					.findViewById(R.id.cb_option);
+			vh.setOnClickListener(new View.OnClickListener() {
 
-					@Override
-					public void onClick(View v) {
-						((CheckedTextView) v).toggle();
-						mBrands.get(position).checked = ((CheckedTextView) v)
-								.isChecked();
-						((CheckedTextView) v).setTextColor(((CheckedTextView) v)
-								.isChecked() ? Color.BLUE : Color.BLACK);
-						if (((CheckedTextView) v).isChecked()) {
-							if (++mSelectedBrandsCount == mBrands.size()) {
-								mSelectAllBrands.setChecked(true);
-							}
-						} else {
-							if (--mSelectedBrandsCount < mBrands.size()) {
-								mSelectAllBrands.setChecked(false);
-							}
+				@Override
+				public void onClick(View v) {
+					((CheckedTextView) v).toggle();
+					mBrands.get(position).checked = ((CheckedTextView) v)
+							.isChecked();
+					((CheckedTextView) v).setTextColor(((CheckedTextView) v)
+							.isChecked() ? Color.BLUE : Color.BLACK);
+					if (((CheckedTextView) v).isChecked()) {
+						if (++mSelectedBrandsCount == mBrands.size()) {
+							mSelectAllBrands.setChecked(true);
 						}
-						showProducts();
+					} else if (--mSelectedBrandsCount < mBrands.size()) {
+						mSelectAllBrands.setChecked(false);
 					}
-				});
-				Brand _temp = mBrands.get(position);
-				vh.setText(_temp.name);
-				vh.setChecked(_temp.checked);
-				vh.setTextColor(_temp.checked ? Color.BLUE : Color.BLACK);
-				_temp.vh = vh;
-			}
+
+					showProducts();
+				}
+			});
+			Brand _temp = mBrands.get(position);
+			vh.setText(_temp.name);
+			vh.setChecked(_temp.checked);
+			vh.setTextColor(_temp.checked ? Color.BLUE : Color.BLACK);
+			_temp.vh = vh;
+
 			return convertView;
 		}
 	}
@@ -470,11 +454,9 @@ public class StorageFragment extends Fragment {
 		@Override
 		public View getView(final int position, View convertView,
 				ViewGroup parent) {
-			if (convertView == null) {
-				CheckedTextView vh = null;
 				convertView = mInflater.inflate(R.layout._option_item, parent,
 						false);
-				vh = (CheckedTextView) convertView.findViewById(R.id.cb_option);
+				CheckedTextView vh = (CheckedTextView) convertView.findViewById(R.id.cb_option);
 				vh.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -505,7 +487,6 @@ public class StorageFragment extends Fragment {
 				vh.setTextColor(_temp.checked ? Color.BLUE : Color.BLACK);
 				vh.setTextSize(18);
 				_temp.vh = vh;
-			}
 			return convertView;
 		}
 	}

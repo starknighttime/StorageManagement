@@ -127,11 +127,11 @@ public class OtherFragment extends Fragment {
 	}
 
 	private void changeTel(int KEY, String tel) {
-		generateQueryChangeTel(KEY, tel);
+		DBHelper.getDatabase().execSQL(generateQueryChangeTel(KEY, tel));
 	}
 
 	private void changeAdd(int CKEY, String add) {
-		generateQueryChangeAdd(CKEY, add);
+		DBHelper.getDatabase().execSQL(generateQueryChangeAdd(CKEY, add));
 	}
 
 	private String generateQueryAddNew(String name) {

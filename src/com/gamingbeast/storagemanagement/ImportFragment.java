@@ -110,7 +110,7 @@ public class ImportFragment extends Fragment {
 				for (int _i = 0; _i < _t; _i++) {
 					Type _temp = mTypes.get(_i);
 					_temp.checked = _isChecked;
-					if (_temp.vh != null) {
+					if (mIsTypeShown && _temp.vh != null) {
 						_temp.vh.setChecked(_isChecked);
 						_temp.vh.setTextColor(_isChecked ? Color.BLUE
 								: Color.BLACK);
@@ -133,15 +133,10 @@ public class ImportFragment extends Fragment {
 				}
 
 				if (!mIsTypeShown) {
-					mTypeOptions.setAdapter(new TypeAdapter(getActivity()
-							.getLayoutInflater()));
+					mTypeOptions.invalidateViews();
 				}
 				mTypeOptions.setVisibility(mIsTypeShown ? View.GONE
 						: View.VISIBLE);
-				if (mIsTypeShown) {
-					mTypeOptions.setAdapter(null);
-				}
-				mTypeOptions.invalidateViews();
 				mShowTypes
 						.setImageResource(mIsTypeShown ? R.drawable.bt_options_show
 								: R.drawable.bt_options_hide);
@@ -161,7 +156,7 @@ public class ImportFragment extends Fragment {
 				for (int _i = 0; _i < _t; _i++) {
 					Brand _temp = mBrands.get(_i);
 					_temp.checked = _isChecked;
-					if (_temp.vh != null) {
+					if (mIsBrandShown && _temp.vh != null) {
 						_temp.vh.setChecked(_isChecked);
 						_temp.vh.setTextColor(_isChecked ? Color.BLUE
 								: Color.BLACK);
@@ -180,15 +175,10 @@ public class ImportFragment extends Fragment {
 					closeTypeOption();
 				}
 				if (!mIsBrandShown) {
-					mBrandOptions.setAdapter(new BrandAdapter(getActivity()
-							.getLayoutInflater()));
+					mBrandOptions.invalidateViews();
 				}
 				mBrandOptions.setVisibility(mIsBrandShown ? View.GONE
 						: View.VISIBLE);
-				if (mIsBrandShown) {
-					mBrandOptions.setAdapter(null);
-				}
-				mBrandOptions.invalidateViews();
 				mShowBrands
 						.setImageResource(mIsBrandShown ? R.drawable.bt_options_show
 								: R.drawable.bt_options_hide);
@@ -457,14 +447,12 @@ public class ImportFragment extends Fragment {
 
 	private void closeBrandOption() {
 		mBrandOptions.setVisibility(View.GONE);
-		mBrandOptions.setAdapter(null);
 		mShowBrands.setImageResource(R.drawable.bt_options_show);
 		mIsBrandShown = false;
 	}
 
 	private void closeTypeOption() {
 		mTypeOptions.setVisibility(View.GONE);
-		mTypeOptions.setAdapter(null);
 		mShowTypes.setImageResource(R.drawable.bt_options_show);
 		mIsTypeShown = false;
 	}
@@ -718,7 +706,8 @@ public class ImportFragment extends Fragment {
 				@Override
 				public boolean onEditorAction(TextView v, int actionId,
 						KeyEvent event) {
-					if (v.getText() == null||v.getText().toString().equals("")) {
+					if (v.getText() == null
+							|| v.getText().toString().equals("")) {
 						v.setFocusableInTouchMode(false);
 						v.clearFocus();
 						return false;
@@ -753,7 +742,8 @@ public class ImportFragment extends Fragment {
 				@Override
 				public boolean onEditorAction(TextView v, int actionId,
 						KeyEvent event) {
-					if (v.getText() == null || v.getText().toString().equals("")) {
+					if (v.getText() == null
+							|| v.getText().toString().equals("")) {
 						v.setFocusableInTouchMode(false);
 						v.clearFocus();
 						return false;

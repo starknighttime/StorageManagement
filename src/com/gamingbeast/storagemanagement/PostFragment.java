@@ -101,7 +101,7 @@ public class PostFragment extends Fragment {
 				for (int _i = 0; _i < _t; _i++) {
 					Customer _temp = mCustomers.get(_i);
 					_temp.checked = _isChecked;
-					if (_temp.vh != null) {
+					if (mIsCustomerShown && _temp.vh != null) {
 						_temp.vh.setChecked(_isChecked);
 						_temp.vh.setTextColor(_isChecked ? Color.BLUE
 								: Color.BLACK);
@@ -115,7 +115,7 @@ public class PostFragment extends Fragment {
 		});
 		mShowCustomers.setOnClickListener(new Button.OnClickListener() {
 			public void onClick(View v) {
-				if (mIsCustomerShown) {
+				if (!mIsCustomerShown) {
 					mCustomerOptions.invalidateViews();
 				}
 				mCustomerOptions.setVisibility(mIsCustomerShown ? View.GONE

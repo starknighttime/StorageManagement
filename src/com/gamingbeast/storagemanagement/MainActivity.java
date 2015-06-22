@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity implements
 		OnPageChangeListener {
@@ -27,6 +28,7 @@ public class MainActivity extends FragmentActivity implements
 	private boolean mFragmentUpdateFlag = false;
 	private int mSelectedActionTab = Constants.ACTION_TAB_MAIN;
 	private int mSelectedTab = R.id.tab_brief;
+	private long mExitTime = 0;
 
 	// duration
 	@Override
@@ -37,7 +39,7 @@ public class MainActivity extends FragmentActivity implements
 		getActionBar().hide();
 		setContentView(R.layout.activity_main);
 		// TODO
-		//DBHelper.copyDataBase(1,this);
+		// DBHelper.copyDataBase(1,this);
 		DBHelper.intiDatabase(this);
 		mViewContent = (ViewPager) findViewById(R.id.vp_container);
 		init();
@@ -48,6 +50,13 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onBackPressed() {
 		onTabSwitched(findViewById(R.id.tab_action));
+		if ((System.currentTimeMillis() - mExitTime) > 2000) {
+			Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+			mExitTime = System.currentTimeMillis();
+		} else {
+			DBHelper.getDatabase().close();
+			finish();
+		}
 		return;
 	}
 

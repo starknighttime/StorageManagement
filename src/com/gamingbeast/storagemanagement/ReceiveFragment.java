@@ -101,7 +101,7 @@ public class ReceiveFragment extends Fragment {
 				for (int _i = 0; _i < _t; _i++) {
 					Source _temp = mSources.get(_i);
 					_temp.checked = _isChecked;
-					if (_temp.vh != null) {
+					if (mIsSourceShown && _temp.vh != null) {
 						_temp.vh.setChecked(_isChecked);
 						_temp.vh.setTextColor(_isChecked ? Color.BLUE
 								: Color.BLACK);
@@ -115,7 +115,7 @@ public class ReceiveFragment extends Fragment {
 		});
 		mShowSources.setOnClickListener(new Button.OnClickListener() {
 			public void onClick(View v) {
-				if (mIsSourceShown) {
+				if (!mIsSourceShown) {
 					mSourceOptions.invalidateViews();
 				}
 				mSourceOptions.setVisibility(mIsSourceShown ? View.GONE
@@ -185,7 +185,7 @@ public class ReceiveFragment extends Fragment {
 			@Override
 			public boolean onEditorAction(TextView v, int actionId,
 					KeyEvent event) {
-				if (v.getText() == null ||v.getText().toString().equals("")) {
+				if (v.getText() == null || v.getText().toString().equals("")) {
 					mShipment = 0;
 					v.setFocusableInTouchMode(false);
 					v.clearFocus();
@@ -725,7 +725,8 @@ public class ReceiveFragment extends Fragment {
 							@Override
 							public boolean onEditorAction(TextView v,
 									int actionId, KeyEvent event) {
-								if (v.getText() == null || v.getText().toString().equals("")) {
+								if (v.getText() == null
+										|| v.getText().toString().equals("")) {
 									_minus.setEnabled(false);
 									_plus.setEnabled(true);
 									_temp.performR = false;
